@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence-unit name="myj" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <!-- value="create" to build a new database on each run; value="update" to modify an existing database; value="create-drop" means the same as "create" but also drops tables when Hibernate closes; value="validate" makes no changes to the database -->
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.connection.charSet" value="UTF-8"/>
+            <!--
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+            <property name="hibernate.connection.charSet" value="UTF-8"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.connection.username" value="PM"/>
+            <property name="hibernate.connection.password" value="HelloWorld123"/>
+            <property name="hibernate.connection.url" value="jdbc:PM:HelloWorld123:@localhost:1521:store"/>
+            -->
+
+            <!--
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            -->
+            <property name="url" value="jdbc:postgresql://127.0.0.1:5432/spring" />
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+
+            <!--
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="hibernate.connection.username" value="WRONG_PM"/>
+            <property name="hibernate.connection.user" value="WRONG_PM"/>
+            <property name="hibernate.connection.password" value="WRONG_HelloWorld123"/>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@//127.0.0.1:1521/WRONG_store"/>
+            -->
+        </properties>
+    </persistence-unit>
+</persistence>

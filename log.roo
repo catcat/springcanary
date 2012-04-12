@@ -1,0 +1,6 @@
+// Spring Roo 1.2.0.RC1 [rev dcaa483] log opened at 2011-12-14 18:14:16
+project --topLevelPackage com.orcl
+jpa setup --provider HIBERNATE --database ORACLE
+hint
+web mvc setup
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.orcl.logic.Orange" autowire="byType">
+        <property name="source" value="http://ya.ru"></property>
+    </bean>
+
+    <bean id="pearA" class="com.orcl.logic.Pear" autowire-candidate="false" init-method="onInit">
+        <property name="color" value="342"></property>
+    </bean>
+
+    <bean id="pearB" class="com.orcl.logic.Pear" primary="true" scope="prototype">
+        <property name="color" value="342"></property>
+    </bean>
+
+    <bean id="pear" class="com.orcl.logic.Pear" name="red,green,blue">
+        <property name="color" value="42"></property>
+    </bean>
+
+    <bean id="staticPear" class="com.orcl.logic.Pear" factory-method="getInstance"></bean>
+
+    <alias name="blue" alias="aliastest"></alias>
+
+    <bean id="abstractApple" abstract="true">
+        <constructor-arg ref="pear"/>
+        <property name="redPear" ref="red"></property>
+    </bean>
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:my.properties"/>
+    </bean>
+
+    <bean class="com.orcl.logic.Apple"
+          p:color="${hello}"
+          lazy-init="true"
+          parent="abstractApple"
+            >
+
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <ref bean="reg" ></ref>
+                <!--<ref local="reg"></ref>-->
+            </list>
+        </property>
+    </bean>
+    <bean id="reg" class="com.orcl.editors.CustomRegistrar"></bean>
+
+</beans>
