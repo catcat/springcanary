@@ -84,9 +84,6 @@ public class ProductsController {
         per.registerCustomEditors(binder);
     }
 
-
-
-
     // Fill
     @RequestMapping("products/fill.htm")
     public ModelAndView fill(@RequestParam(required=true,value="count") Integer count) {
@@ -110,7 +107,7 @@ public class ProductsController {
             dao.merge(p);
         }
 
-        ModelAndView mav = new ModelAndView("uncaughtException");
+        ModelAndView mav = new ModelAndView("products/list");
         mav.addObject("rows", dao.getAll());
 
         return mav;
