@@ -62,6 +62,8 @@
             </div>
         </fieldset>
 
+        <c:url value="http://ya.ru">lol</c:url>
+
         <table border="0">
             <c:forEach items="${props}" var="prop">
                 <tr>

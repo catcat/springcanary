@@ -98,7 +98,7 @@
     </error-page>
     -->
 
-    <!--
+
     <servlet>
         <servlet-name>spring-ws</servlet-name>
         <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
@@ -106,7 +106,7 @@
 
     <servlet-mapping>
         <servlet-name>spring-ws</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/myws/*</url-pattern>
     </servlet-mapping>
-    -->
+
 </web-app>

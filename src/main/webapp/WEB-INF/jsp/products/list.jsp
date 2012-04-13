@@ -2,6 +2,8 @@
 
     <img src="/orcl/images/octocat.png" style="width:32px; height: 32px;"/>
 
+    <a href="http://localhost:9980/orcl/myws/products.wsdl">wsdl1</a>
+    <a href="http://localhost:9980/orcl/myws/productsService/products.wsdl">wsdl2</a>
     <h3>Products</h3>
 
     <table class="data">

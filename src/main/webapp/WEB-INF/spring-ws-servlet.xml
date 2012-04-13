@@ -6,17 +6,15 @@
   http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <!--
     <context:component-scan base-package="com.orcl.webservice"/>
-
 
     <sws:annotation-driven/>
 
-    <sws:dynamic-wsdl id="myTest"
-                      portTypeName="myTest"
-                      localUri="/"
-                      targetNamespace="http://foo.bar/myTest">
-        <sws:xsd location="/WEB-INF/xsd/myTest.xsd"/>
+    <sws:dynamic-wsdl id="products"
+                      portTypeName="MyProducts"
+                      locationUri="/productsService/"
+                      targetNamespace="http://example.com/myep/schemas">
+        <sws:xsd location="/WEB-INF/xml/request.xsd"/>
     </sws:dynamic-wsdl>
-    -->
+
 </beans>
