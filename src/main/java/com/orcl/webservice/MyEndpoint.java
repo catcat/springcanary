@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.orcl.dao.ProductsDao;
+import org.jdom.Document;
+import org.jdom.output.XMLOutputter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -13,12 +15,14 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.xpath.XPath;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 
 @Endpoint
 public class MyEndpoint {
 
     private static final String NAMESPACE_URI = "http://example.com/myep/schemas";
+    private Namespace namespace;
 
     private XPath priceExpression, dateExpression, messageExpression;
 
@@ -29,7 +33,7 @@ public class MyEndpoint {
     public void setDao(ProductsDao dao) throws JDOMException {
         this.dao = dao;
 
-        Namespace namespace = Namespace.getNamespace("myep", NAMESPACE_URI);
+        namespace = Namespace.getNamespace("myep", NAMESPACE_URI);
 
         priceExpression = XPath.newInstance("//myep:Price");
         priceExpression.addNamespace(namespace);
@@ -45,13 +49,40 @@ public class MyEndpoint {
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ProductRequest")
-    public void handleHolidayRequest(@RequestPayload Element productRequest)
+    @ResponsePayload
+    public Element handleProductRequest(@RequestPayload Element productRequest)
             throws Exception {
+        System.out.println(new XMLOutputter().outputString(productRequest));
 
         Date date = dateFormat.parse(dateExpression.valueOf(productRequest));
         Integer price = Integer.parseInt(priceExpression.valueOf(productRequest));
         String message = messageExpression.valueOf(productRequest);
         
-        System.out.println("GOT IT:"+date+" "+price+" "+message);
+        System.out.println("GOT IT:" + date + " " + price + " " + message);
+
+        return createFakeResponse();
+    }
+
+    protected Element createFakeResponse() {
+        Element resp = new Element("ProductResponse", namespace);
+
+        Document myDocument = new Document(resp);
+
+
+        Element id = new Element("id", namespace);
+        id.setText("123");
+        Element name = new Element("ProductName", namespace);
+        name.setText("Lol "+ Math.random()*10000);
+        Element details = new Element("Details", namespace);
+        details.setText("Something about the product");
+
+        resp
+            .addContent(id)
+            .addContent(name)
+            .addContent(details);
+        
+        System.out.println(new XMLOutputter().outputString(resp));
+
+        return resp;
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://example.com/myep/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root" type="sch:rootType" xmlns:sch="http://example.com/myep/schemas">
+    <xs:annotation>
+      <xs:documentation>&lt;ProductRequest></xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ProductType">
+    <xs:sequence>
+      <xs:element type="xs:int" name="Quality"/>
+      <xs:element type="xs:int" name="Price"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReasonType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Message"/>
+      <xs:element type="xs:date" name="Date"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductRequestType">
+    <xs:sequence>
+      <xs:element type="sch:ReasonType" name="Reason" xmlns:sch="http://example.com/myep/schemas"/>
+      <xs:element type="sch:ProductType" name="Product" xmlns:sch="http://example.com/myep/schemas"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rootType">
+    <xs:sequence>
+      <xs:element type="sch:ProductRequestType" name="ProductRequest" xmlns:sch="http://example.com/myep/schemas"/>
+      <xs:element type="sch:ProductResponseType" name="ProductResponse" xmlns:sch="http://example.com/myep/schemas"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductResponseType">
+    <xs:sequence>
+      <xs:element type="xs:int" name="id"/>
+      <xs:element type="xs:string" name="ProductName"/>
+      <xs:element type="xs:string" name="Details"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

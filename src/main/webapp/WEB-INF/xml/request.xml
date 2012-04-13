@@ -1,0 +1,18 @@
+<!--<ProductRequest>       -->
+<root xmlns="http://example.com/myep/schemas">
+    <ProductRequest >
+        <Reason>
+            <Message>Do want</Message>
+            <Date>2006-07-07</Date>
+        </Reason>
+        <Product>
+            <Quality>42</Quality>
+            <Price>11</Price>
+        </Product>
+    </ProductRequest>
+    <ProductResponse>
+        <id>123</id>
+        <ProductName>Lol</ProductName>
+        <Details>Something</Details>
+    </ProductResponse>
+</root>
